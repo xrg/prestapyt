@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 def unicode2encoding(text, encoding='utf-8'):

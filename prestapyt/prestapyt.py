@@ -140,8 +140,7 @@ class PrestaShopWebService(object):
             if not (LooseVersion(self.MIN_COMPATIBLE_VERSION) <=
                     LooseVersion(version) <=
                     LooseVersion(self.MAX_COMPATIBLE_VERSION)):
-                warnings.warn(("This library may not be compatible with this version of PrestaShop (%s). "
-                     "Please upgrade/downgrade this library") % (version,))
+                warnings.warn("This library may not be compatible with this version of PrestaShop (%s). Please upgrade/downgrade this library" % (version,), stacklevel=0)
         return True
 
     def _parse_error(self, xml_content):

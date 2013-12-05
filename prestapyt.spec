@@ -14,6 +14,7 @@ License:    AGPLv3
 BuildArch:  noarch
 Group:      Libraries
 BuildRequires:  python
+Requires:   python-httplib2
 
 %description
 A library to access Prestashop Web Service from Python.

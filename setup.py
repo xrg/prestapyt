@@ -11,7 +11,7 @@
 
 import os
 from setuptools import setup
-import prestapyt
+# import prestapyt
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -19,7 +19,7 @@ def read(fname):
 setup(
     # Basic package information.
     name = 'prestapyt',
-    version = prestapyt.prestapyt.__version__,
+    version = '0.6.0',
 
     # Packaging options.
     include_package_data = True,

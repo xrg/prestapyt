@@ -35,6 +35,9 @@ try:
 except ImportError, e:
     from xml.etree import ElementTree
 
+if not getattr(ElementTree, 'ParseError', None):
+    # monkey-patch the superclass for python 2.6
+    ElementTree.ParseError = SyntaxError
 
 class PrestaShopWebServiceError(Exception):
     """Generic PrestaShop WebServices error class

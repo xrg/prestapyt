@@ -17,9 +17,6 @@
     Questions, comments? guewen.baconnier@gmail.com
 """
 
-__author__ = "Guewen Baconnier <guewen.baconnier@gmail.com>"
-__version__ = "0.6.1"
-
 import urllib
 import warnings
 import httplib2
@@ -34,6 +31,8 @@ try:
     from xml.etree import cElementTree as ElementTree
 except ImportError, e:
     from xml.etree import ElementTree
+
+from .version import __author__, __version__
 
 if not getattr(ElementTree, 'ParseError', None):
     # monkey-patch the superclass for python 2.6
@@ -281,8 +280,8 @@ class PrestaShopWebService(object):
             headers, body = self.encode_multipart_formdata(files)
             return self._parse(self._execute(url, 'POST', body=body, add_headers=headers)[2])
         elif xml is not None:
-            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-            return self._parse(self._execute(url, 'POST', body=urllib.urlencode({'xml': xml}), add_headers=headers)[2])
+            headers = {'Content-Type': 'text/xml'}
+            return self._parse(self._execute(url, 'POST', body=xml, add_headers=headers)[2])
         else:
             raise PrestaShopWebServiceError('Undefined data.')
 
@@ -373,8 +372,8 @@ class PrestaShopWebService(object):
         @param content: modified XML as string of the resource.
         @return: an ElementTree of the Webservice's response
         """
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        return self._parse(self._execute(url, 'PUT', body=unicode_encode.encode(content), add_headers=headers)[2])
+        headers = {'Content-Type': 'text/xml'}
+        return self._parse(self._execute(url, 'PUT', body=content, add_headers=headers)[2])
 
     def delete(self, resource, resource_ids):
         """
